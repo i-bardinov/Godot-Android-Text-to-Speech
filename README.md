@@ -29,7 +29,7 @@ isLanguageAvailable(String lang, String country)
 textToSpeech(String text)
 
 # Stop playing voice
-stop(String text)
+stop()
 
 ```
 
