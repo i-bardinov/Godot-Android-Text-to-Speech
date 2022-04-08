@@ -29,7 +29,7 @@ public class GodotTTS extends GodotPlugin {
     @Override
     public List<String> getPluginMethods() {
         return Arrays.asList(
-                "initTextToSpeech", "isLanguageAvailable", "textToSpeech", "isSpeaking", "setPitch", "setSpeechRate", "stop"
+                "setLanguage", "isLanguageAvailable", "speak", "isSpeaking", "setPitch", "setSpeechRate", "stop"
         );
     }
 
@@ -37,7 +37,7 @@ public class GodotTTS extends GodotPlugin {
      * Init TTS
      *
      */
-    public void initTextToSpeech(String lang, String country) {
+    public void setLanguage(String lang, String country) {
         if (textToSpeech != null)
             return;
         Locale locale = new Locale(lang, country);
@@ -63,7 +63,7 @@ public class GodotTTS extends GodotPlugin {
      * Translate text to speech
      *
      */
-    public void textToSpeech(String text) {
+    public void speak(String text) {
         if (textToSpeech == null)
             return;
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
