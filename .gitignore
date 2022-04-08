@@ -9,3 +9,4 @@ tools/releases
 .idea
 .settings
 .project
+.vscode
