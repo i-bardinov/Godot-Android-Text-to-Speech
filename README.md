@@ -49,6 +49,36 @@ start
 done
 ```
 
+### Example implementation
+```python
+var tts
+
+func _ready():
+    if Engine.has_singleton("GodotTTS"):
+        tts = Engine.get_singleton("GodotTTS")
+
+		tts.connect("start", self, "_on_tts_start")
+		tts.connect("done", self, "_on_tts_done")
+
+		if tts.isLanguageAvailable("en", "EN"
+            tts.setLanguage("en", "EN")
+
+func _on_Button_pressed():
+    var text = "Hello World!"
+
+    if tts:
+            tts.stop()
+            tts.setPitch(rand_range(0.5, 1.5))
+            tts.setSpeechRate(rand_range(0.5, 1.5))
+            tts.speak(text)
+
+func _on_tts_start():
+	# do stuff when TTS starts speaking
+
+func _on_tts_done():
+	# do stuff when TTS stops speaking
+```
+
 ## Compiling the Plugin (optional)
 
 If you want to compile the plugin by yourself, it's very easy:
