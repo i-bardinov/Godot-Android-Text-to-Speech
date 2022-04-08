@@ -29,7 +29,7 @@ public class GodotTTS extends GodotPlugin {
     @Override
     public List<String> getPluginMethods() {
         return Arrays.asList(
-                "initTextToSpeech", "isLanguageAvailable", "textToSpeech", "stop"
+                "initTextToSpeech", "isLanguageAvailable", "textToSpeech", "isSpeaking", "setPitch", "setSpeechRate", "stop"
         );
     }
 
@@ -71,6 +71,39 @@ public class GodotTTS extends GodotPlugin {
         } else {
             textToSpeech.speak(text, TextToSpeech.QUEUE_FLUSH, null);
         }
+    }
+
+    /**
+     * Checks whether the TTS engine is busy speaking
+     *
+     */
+    public boolean isSpeaking() {
+        if(textToSpeech == null)
+            return false;
+        
+        return textToSpeech.isSpeaking();
+    }
+
+    /**
+     * Sets the speech pitch for the TextToSpeech engine
+     *
+     */
+    public int setPitch(float pitch) {
+        if(textToSpeech == null)
+            return textToSpeech.ERROR;
+        
+        return textToSpeech.setPitch(pitch);
+    }
+
+    /**
+     * Sets the speech rate
+     *
+     */
+    public int setSpeechRate(float speechRate) {
+        if(textToSpeech == null)
+            return textToSpeech.ERROR;
+        
+        return textToSpeech.setSpeechRate(speechRate);
     }
 
     /**
