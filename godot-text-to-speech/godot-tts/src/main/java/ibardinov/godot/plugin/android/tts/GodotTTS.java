@@ -2,15 +2,19 @@ package ibardinov.godot.plugin.android.tts;
 
 import android.os.Build;
 import android.speech.tts.TextToSpeech;
+import android.speech.tts.UtteranceProgressListener;
 
 import androidx.annotation.NonNull;
+import androidx.collection.ArraySet;
 
 import org.godotengine.godot.Godot;
 import org.godotengine.godot.plugin.GodotPlugin;
+import org.godotengine.godot.plugin.SignalInfo;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
+import java.util.Set;
 
 public class GodotTTS extends GodotPlugin {
     private TextToSpeech textToSpeech = null;
@@ -33,6 +37,17 @@ public class GodotTTS extends GodotPlugin {
         );
     }
 
+    @NonNull
+    @Override
+    public Set<SignalInfo> getPluginSignals() {
+        Set<SignalInfo> signals = new ArraySet<>();
+
+        signals.add(new SignalInfo("start"));
+        signals.add(new SignalInfo("done"));
+
+        return signals;
+    }
+
     /**
      * Init TTS
      *
@@ -44,6 +59,21 @@ public class GodotTTS extends GodotPlugin {
         textToSpeech = new TextToSpeech(getActivity(), status -> {
             if(status != TextToSpeech.ERROR) {
                 textToSpeech.setLanguage(locale);
+                textToSpeech.setOnUtteranceProgressListener(new UtteranceProgressListener() {
+                    @Override
+                    public void onStart(String utteranceId) {
+                        emitSignal("start");
+                    }
+                    
+                    @Override
+                    public void onDone(String utteranceId) {
+                        emitSignal("done");
+                    }
+
+                    @Override
+                    public void onError(String utteranceId) {
+                    }
+                });
             }
         });
     }
