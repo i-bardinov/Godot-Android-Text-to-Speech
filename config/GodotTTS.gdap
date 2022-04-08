@@ -2,6 +2,6 @@
 
 name="GodotTTS"
 binary_type="local"
-binary="GodotTTS.1.0.0.release.aar"
+binary="GodotTTS.1.0.1.release.aar"
 
 [dependencies]
