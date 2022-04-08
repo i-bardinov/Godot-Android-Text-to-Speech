@@ -3,7 +3,7 @@ plugins {
 }
 
 ext.pluginVersionCode = 1
-ext.pluginVersionName = "1.0.1"
+ext.pluginVersionName = "1.1.0"
 
 android {
     compileSdkVersion 31
