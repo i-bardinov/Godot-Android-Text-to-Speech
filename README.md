@@ -20,13 +20,22 @@ This plugin supports:
 ```python
 
 # Init TTS engine with language and country (example -> "en", "US")
-initTextToSpeech(String lang, String country)
+setLanguage(String lang, String country)
 
 # Is languange can be used in engine, returns constant
 isLanguageAvailable(String lang, String country)
 
 # TTS, play text with specified voice
-textToSpeech(String text)
+speak(String text)
+
+# Is TTS busy speaking
+isSpeaking()
+
+# Set speech pitch
+setPitch(float pitch)
+
+# Set speech rate
+setSpeechRate(float speechRate)
 
 # Stop playing voice
 stop()
