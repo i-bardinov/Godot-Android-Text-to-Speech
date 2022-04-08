@@ -42,6 +42,13 @@ stop()
 
 ```
 
+### Available Signals
+```
+start
+
+done
+```
+
 ## Compiling the Plugin (optional)
 
 If you want to compile the plugin by yourself, it's very easy:
