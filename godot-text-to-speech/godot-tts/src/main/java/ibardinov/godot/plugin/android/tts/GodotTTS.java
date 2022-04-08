@@ -89,6 +89,7 @@ public class GodotTTS extends GodotPlugin {
 
     @Override
     public void onMainDestroy() {
-        textToSpeech.shutdown();
+        if (textToSpeech != null)
+            textToSpeech.shutdown();
     }
 }
